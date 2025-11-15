@@ -1,0 +1,350 @@
+<owo-ui xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/wisp-forest/owo-lib/1.21.4/owo-ui.xsd">
+    <components>
+        <flow-layout direction="horizontal">
+            <children>
+                <flow-layout direction="vertical" id="changeMenuButton">
+                    <children>
+                        <texture texture="crosshaircustomizer:textures/gui/change_menu.png" u="0" v="0"
+                                 texture-height="64" texture-width="64" region-width="64"
+                                 region-height="64">
+
+                            <sizing>
+                                <vertical method="fixed">18</vertical>
+                                <horizontal method="fixed">18</horizontal>
+                            </sizing>
+                        </texture>
+                    </children>
+                    
+                    <tooltip-text>Change Menu(Current: Main)</tooltip-text>
+
+                    <surface>
+                        <flat>#D0101010</flat>
+                    </surface>
+
+                    <sizing>
+                        <vertical method="fixed">20</vertical>
+                        <horizontal method="fixed">20</horizontal>
+                    </sizing>
+
+                    <margins>
+                        <all>2</all>
+                    </margins>
+
+                    <vertical-alignment>center</vertical-alignment>
+                    <horizontal-alignment>center</horizontal-alignment>
+                </flow-layout>
+                
+                <flow-layout direction="vertical" id="mainContainer">
+                    <children>
+                        <flow-layout direction="horizontal" id="topControlContainer">
+                            <children>
+                                <flow-layout direction="vertical" id="upOrderButton">
+                                    <children>
+                                        <texture texture="crosshaircustomizer:textures/gui/up_order.png" u="0" v="0"
+                                                 texture-height="64" texture-width="64" region-width="64"
+                                                 region-height="64">
+                                            <tooltip-text>Move Crosshair Up</tooltip-text>
+
+                                            <sizing>
+                                                <vertical method="fixed">18</vertical>
+                                                <horizontal method="fixed">18</horizontal>
+                                            </sizing>
+                                        </texture>
+                                    </children>
+
+                                    <surface>
+                                        <flat>#D0101010</flat>
+                                    </surface>
+
+                                    <sizing>
+                                        <vertical method="fixed">20</vertical>
+                                        <horizontal method="fixed">20</horizontal>
+                                    </sizing>
+
+                                    <margins>
+                                        <all>2</all>
+                                    </margins>
+
+                                    <vertical-alignment>center</vertical-alignment>
+                                    <horizontal-alignment>center</horizontal-alignment>
+                                </flow-layout>
+
+                                <flow-layout direction="vertical" id="downOrderButton">
+                                    <children>
+                                        <texture texture="crosshaircustomizer:textures/gui/down_order.png" u="0" v="0"
+                                                 texture-height="64" texture-width="64" region-width="64"
+                                                 region-height="64">
+                                            <tooltip-text>Move Crosshair Down</tooltip-text>
+
+                                            <sizing>
+                                                <vertical method="fixed">18</vertical>
+                                                <horizontal method="fixed">18</horizontal>
+                                            </sizing>
+                                        </texture>
+                                    </children>
+
+                                    <surface>
+                                        <flat>#D0101010</flat>
+                                    </surface>
+
+                                    <sizing>
+                                        <vertical method="fixed">20</vertical>
+                                        <horizontal method="fixed">20</horizontal>
+                                    </sizing>
+
+                                    <margins>
+                                        <all>2</all>
+                                    </margins>
+
+                                    <vertical-alignment>center</vertical-alignment>
+                                    <horizontal-alignment>center</horizontal-alignment>
+                                </flow-layout>
+
+                                <spacer>
+                                    <sizing>
+                                        <horizontal method="expand">100</horizontal>
+                                        <vertical method="fixed">0</vertical>
+                                    </sizing>
+                                </spacer>
+
+                                <flow-layout direction="vertical" id="deleteButton">
+                                    <children>
+                                        <texture texture="crosshaircustomizer:textures/gui/delete.png" u="0" v="0"
+                                                 texture-height="64" texture-width="64" region-width="64"
+                                                 region-height="64">
+                                            <tooltip-text>Delete Crosshair</tooltip-text>
+
+                                            <sizing>
+                                                <vertical method="fixed">18</vertical>
+                                                <horizontal method="fixed">18</horizontal>
+                                            </sizing>
+                                        </texture>
+                                    </children>
+
+                                    <surface>
+                                        <flat>#D0101010</flat>
+                                    </surface>
+
+                                    <sizing>
+                                        <vertical method="fixed">20</vertical>
+                                        <horizontal method="fixed">20</horizontal>
+                                    </sizing>
+
+                                    <margins>
+                                        <all>2</all>
+                                    </margins>
+
+                                    <vertical-alignment>center</vertical-alignment>
+                                    <horizontal-alignment>center</horizontal-alignment>
+                                </flow-layout>
+                            </children>
+
+                            <sizing>
+                                <horizontal method="fixed">400</horizontal>
+                                <vertical method="fixed">24</vertical>
+                            </sizing>
+
+                            <horizontal-alignment>left</horizontal-alignment>
+                            <vertical-alignment>center</vertical-alignment>
+                        </flow-layout>
+
+                        <scroll direction="vertical" id="scrollContainer">
+                            <flow-layout direction="vertical" id="gridContainer">
+                                <children/>
+                            </flow-layout>
+
+                            <scrollbar-thiccness>3</scrollbar-thiccness>
+                            <scrollbar-color>white</scrollbar-color>
+
+                            <sizing>
+                                <horizontal method="fixed">400</horizontal>
+                                <vertical method="fixed">250</vertical>
+                            </sizing>
+                        </scroll>
+
+                        <flow-layout direction="horizontal" id="controlContainer">
+                            <children>
+                                <flow-layout direction="vertical" id="addButton">
+                                    <children>
+                                        <texture texture="crosshaircustomizer:textures/gui/add.png" u="0" v="0"
+                                                 texture-height="64" texture-width="64" region-width="64"
+                                                 region-height="64">
+                                            <tooltip-text>Add Crosshair</tooltip-text>
+
+                                            <sizing>
+                                                <vertical method="fixed">18</vertical>
+                                                <horizontal method="fixed">18</horizontal>
+                                            </sizing>
+                                        </texture>
+                                    </children>
+
+                                    <surface>
+                                        <flat>#D0101010</flat>
+                                    </surface>
+
+                                    <sizing>
+                                        <vertical method="fixed">20</vertical>
+                                        <horizontal method="fixed">20</horizontal>
+                                    </sizing>
+
+                                    <margins>
+                                        <all>2</all>
+                                    </margins>
+
+                                    <vertical-alignment>center</vertical-alignment>
+                                    <horizontal-alignment>center</horizontal-alignment>
+                                </flow-layout>
+
+                                <flow-layout direction="vertical" id="importButton">
+                                    <children>
+                                        <texture texture="crosshaircustomizer:textures/gui/import.png" u="0" v="0"
+                                                 texture-height="64" texture-width="64" region-width="64"
+                                                 region-height="64">
+                                            <tooltip-text>Import from File</tooltip-text>
+
+                                            <sizing>
+                                                <vertical method="fixed">18</vertical>
+                                                <horizontal method="fixed">18</horizontal>
+                                            </sizing>
+                                        </texture>
+                                    </children>
+
+                                    <surface>
+                                        <flat>#D0101010</flat>
+                                    </surface>
+
+                                    <sizing>
+                                        <vertical method="fixed">20</vertical>
+                                        <horizontal method="fixed">20</horizontal>
+                                    </sizing>
+
+                                    <margins>
+                                        <all>2</all>
+                                    </margins>
+
+                                    <vertical-alignment>center</vertical-alignment>
+                                    <horizontal-alignment>center</horizontal-alignment>
+                                </flow-layout>
+
+                                <flow-layout direction="vertical" id="openFolderButton">
+                                    <children>
+                                        <texture texture="crosshaircustomizer:textures/gui/open_folder.png" u="0" v="0"
+                                                 texture-height="64" texture-width="64" region-width="64"
+                                                 region-height="64">
+                                            <tooltip-text>Open Folder</tooltip-text>
+
+                                            <sizing>
+                                                <vertical method="fixed">18</vertical>
+                                                <horizontal method="fixed">18</horizontal>
+                                            </sizing>
+                                        </texture>
+                                    </children>
+
+                                    <surface>
+                                        <flat>#D0101010</flat>
+                                    </surface>
+
+                                    <sizing>
+                                        <vertical method="fixed">20</vertical>
+                                        <horizontal method="fixed">20</horizontal>
+                                    </sizing>
+
+                                    <margins>
+                                        <all>2</all>
+                                    </margins>
+
+                                    <vertical-alignment>center</vertical-alignment>
+                                    <horizontal-alignment>center</horizontal-alignment>
+                                </flow-layout>
+
+                                <spacer>
+                                    <sizing>
+                                        <horizontal method="expand">100</horizontal>
+                                        <vertical method="fixed">0</vertical>
+                                    </sizing>
+                                </spacer>
+
+                                <flow-layout direction="vertical" id="defaultButton">
+                                    <children>
+                                        <texture texture="crosshaircustomizer:textures/gui/default.png" u="0" v="0"
+                                                 texture-height="64" texture-width="64" region-width="64"
+                                                 region-height="64">
+                                            <tooltip-text>Default Crosshair</tooltip-text>
+
+                                            <sizing>
+                                                <vertical method="fixed">18</vertical>
+                                                <horizontal method="fixed">18</horizontal>
+                                            </sizing>
+                                        </texture>
+                                    </children>
+
+                                    <surface>
+                                        <flat>#D0101010</flat>
+                                    </surface>
+
+                                    <sizing>
+                                        <vertical method="fixed">20</vertical>
+                                        <horizontal method="fixed">20</horizontal>
+                                    </sizing>
+
+                                    <margins>
+                                        <all>2</all>
+                                    </margins>
+
+                                    <vertical-alignment>center</vertical-alignment>
+                                    <horizontal-alignment>center</horizontal-alignment>
+                                </flow-layout>
+
+                                <flow-layout direction="vertical" id="reloadButton">
+                                    <children>
+                                        <texture texture="crosshaircustomizer:textures/gui/reload.png" u="0" v="0"
+                                                 texture-height="64" texture-width="64" region-width="64"
+                                                 region-height="64">
+                                            <tooltip-text>Reload Crosshair</tooltip-text>
+
+                                            <sizing>
+                                                <vertical method="fixed">18</vertical>
+                                                <horizontal method="fixed">18</horizontal>
+                                            </sizing>
+                                        </texture>
+                                    </children>
+
+                                    <surface>
+                                        <flat>#D0101010</flat>
+                                    </surface>
+
+                                    <sizing>
+                                        <vertical method="fixed">20</vertical>
+                                        <horizontal method="fixed">20</horizontal>
+                                    </sizing>
+
+                                    <margins>
+                                        <all>2</all>
+                                    </margins>
+
+                                    <vertical-alignment>center</vertical-alignment>
+                                    <horizontal-alignment>center</horizontal-alignment>
+                                </flow-layout>
+                            </children>
+
+                            <sizing>
+                                <horizontal method="fixed">400</horizontal>
+                                <vertical method="fixed">24</vertical>
+                            </sizing>
+
+                            <horizontal-alignment>left</horizontal-alignment>
+                            <vertical-alignment>center</vertical-alignment>
+                        </flow-layout>
+                    </children>
+
+                    <horizontal-alignment>center</horizontal-alignment>
+                    <vertical-alignment>center</vertical-alignment>
+                </flow-layout>
+            </children>
+
+            <vertical-alignment>center</vertical-alignment>
+            <horizontal-alignment>center</horizontal-alignment>
+        </flow-layout>
+    </components>
+</owo-ui>

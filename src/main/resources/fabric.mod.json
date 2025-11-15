@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "crosshaircustomizer",
+  "version": "${version}",
+  "name": "${name}",
+  "description": "Customize your crosshair just the way you like and enjoy Minecraft even more!",
+  "authors": [
+    "bekkouame1024"
+  ],
+  "license": "MIT",
+  "icon": "assets/crosshaircustomizer/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.bekkouame1024.mod.crosshaircustomizer.CrosshairCustomizer"
+    ],
+    "client": [
+      "com.bekkouame1024.mod.crosshaircustomizer.CrosshairCustomizerClient"
+    ]
+  },
+  "mixins": [
+    "crosshaircustomizer.mixins.json",
+    {
+      "config": "crosshaircustomizer.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "accessWidener": "crosshaircustomizer.accesswidener",
+  "depends": {
+    "fabricloader": ">=0.17",
+    "minecraft": "${minecraft}"
+  }
+}
