@@ -32,6 +32,7 @@ public class CanvasScreen extends BaseUIModelScreen<FlowLayout> {
     private static final int GRID_COLUMNS = 15;
     private static final int GRID_ROWS = 15;
     private static final int MARGIN_SIZE = 1;
+    private static final UiComponentFactory.ButtonSprite buttonSprite = new UiComponentFactory.ButtonSprite(0, 0, 256, 256);
     
     private List<CanvasCellInfo> cells = new ArrayList<>();
 
@@ -109,21 +110,27 @@ public class CanvasScreen extends BaseUIModelScreen<FlowLayout> {
     }
 
     private void addUIComponents(FlowLayout rootComponent) {
-        rootComponent.childById(FlowLayout.class, "saveButton").mouseDown().subscribe((mouseX, mouseY, button) ->{
-            MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
-            openSaveOverlay(rootComponent);
-            return true;
-        });
+        FlowLayout controlContainer = rootComponent.childById(FlowLayout.class, "controlContainer");
+        controlContainer.surface(Surface.blur(1f, 1f).and(Surface.flat(0xB4101010)).and(new TopOutlineSurface(0xD0666666)));
 
-        rootComponent.childById(FlowLayout.class, "cancelButton").mouseDown().subscribe((mouseX, mouseY, button) ->{
-            MinecraftClient client = MinecraftClient.getInstance();
-            client.getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
-            client.setScreen(new SettingScreen());
-            return true;
-        });
-
-        rootComponent.childById(FlowLayout.class, "controlContainer")
-                .surface(Surface.blur(1f, 1f).and(Surface.flat(0xB4101010)).and(new TopOutlineSurface(0xD0666666)));
+        controlContainer.child(UiComponentFactory.button(Identifier.of("crosshaircustomizer:textures/gui/save.png"),
+                buttonSprite,
+                Text.of("Save"),
+                (mouseX, mouseY, button) -> {
+                    openSaveOverlay(rootComponent);
+                    return true;
+                })
+        );
+        
+        controlContainer.child(UiComponentFactory.button(Identifier.of("crosshaircustomizer:textures/gui/cancel.png"),
+                buttonSprite,
+                Text.of("Cancel"),
+                (mouseX, mouseY, button) -> {
+                    MinecraftClient client = MinecraftClient.getInstance();
+                    client.setScreen(new SettingScreen());
+                    return true;
+                })
+        );
     }
 
     private void setCellPainted(int column, int row, boolean painted) {

@@ -32,65 +32,7 @@
                 </flow-layout>
 
                 <flow-layout direction="horizontal" id="controlContainer">
-                    <children>
-                        <flow-layout direction="vertical" id="saveButton">
-                            <children>
-                                <texture texture="crosshaircustomizer:textures/gui/save.png" u="0" v="0" texture-height="64" texture-width="64" region-width="64" region-height="64">
-                                    <tooltip-text>Save</tooltip-text>
-
-                                    <sizing>
-                                        <vertical method="fixed">18</vertical>
-                                        <horizontal method="fixed">18</horizontal>
-                                    </sizing>
-                                </texture>
-                            </children>
-
-                            <surface>
-                                <flat>#D0101010</flat>
-                            </surface>
-
-                            <sizing>
-                                <vertical method="fixed">20</vertical>
-                                <horizontal method="fixed">20</horizontal>
-                            </sizing>
-
-                            <margins>
-                                <all>2</all>
-                            </margins>
-
-                            <vertical-alignment>center</vertical-alignment>
-                            <horizontal-alignment>center</horizontal-alignment>
-                        </flow-layout>
-
-                        <flow-layout direction="vertical" id="cancelButton">
-                            <children>
-                                <texture texture="crosshaircustomizer:textures/gui/cancel.png" u="0" v="0" texture-height="64" texture-width="64" region-width="64" region-height="64">
-                                    <tooltip-text>Cancel</tooltip-text>
-
-                                    <sizing>
-                                        <vertical method="fixed">18</vertical>
-                                        <horizontal method="fixed">18</horizontal>
-                                    </sizing>
-                                </texture>
-                            </children>
-
-                            <surface>
-                                <flat>#D0101010</flat>
-                            </surface>
-
-                            <sizing>
-                                <vertical method="fixed">20</vertical>
-                                <horizontal method="fixed">20</horizontal>
-                            </sizing>
-
-                            <margins>
-                                <all>2</all>
-                            </margins>
-
-                            <vertical-alignment>center</vertical-alignment>
-                            <horizontal-alignment>center</horizontal-alignment>
-                        </flow-layout>
-                    </children>
+                    <children/>
 
                     <sizing>
                         <horizontal method="fixed">400</horizontal>
