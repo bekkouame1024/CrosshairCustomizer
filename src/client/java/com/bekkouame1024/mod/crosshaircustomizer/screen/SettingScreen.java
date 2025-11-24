@@ -29,6 +29,8 @@ public class SettingScreen extends BaseUIModelScreen<FlowLayout> {
     private static final int COLUMNS = 6;
     private static final int CROSSHAIR_SIZE = 40;
     private static final int CROSSHAIR_CONTAINER_COLOR = 0xE1101010;
+    
+    private ModConfig config;
 
     private static boolean isShiftDown = false;
     
@@ -40,6 +42,8 @@ public class SettingScreen extends BaseUIModelScreen<FlowLayout> {
 
     @Override
     protected void build(FlowLayout rootComponent) {
+        config = CrosshairCustomizer.CONFIG;
+        
         CrosshairManager.setCurrentMenuType(MenuType.MAIN);
         addTopUIComponents(rootComponent);
         buildCrosshairGrid(rootComponent);
@@ -49,9 +53,8 @@ public class SettingScreen extends BaseUIModelScreen<FlowLayout> {
     private void buildCrosshairGrid(FlowLayout rootComponent) {
         rootComponent.childById(ScrollContainer.class, "scrollContainer")
                 .surface(Surface.blur(1f, 1f).and(Surface.flat(0xB4101010)).and(new TopOutlineSurface(0xD0666666)));
-
-        ModConfig config = CrosshairCustomizer.CONFIG;
-        List<ModConfig.CrosshairEntry> entries = new ArrayList<>(config.crosshairs);
+        
+        List<ModConfig.CrosshairEntry> entries = new ArrayList<>(this.config.crosshairs);
         entries.sort(Comparator.comparingInt(e -> e.order));
         List<String> crosshairNames = new ArrayList<>();
         for (ModConfig.CrosshairEntry entry : entries) {
@@ -78,19 +81,17 @@ public class SettingScreen extends BaseUIModelScreen<FlowLayout> {
     }
 
     private int getSelectedIndex() {
-        ModConfig config = CrosshairCustomizer.CONFIG;
-        
         if(CrosshairManager.getCurrentMenuType() == MenuType.MAIN) {
-            if (config.currentCrosshair == null) return -1;
-            for (int i = 0; i < config.crosshairs.size(); i++) {
-                if (config.crosshairs.get(i).file.replace(".png", "").equals(config.currentCrosshair.getPath())) {
+            if (this.config.currentCrosshair == null) return -1;
+            for (int i = 0; i < this.config.crosshairs.size(); i++) {
+                if (this.config.crosshairs.get(i).file.replace(".png", "").equals(this.config.currentCrosshair.getPath())) {
                     return i;
                 }
             }
         }else if (CrosshairManager.getCurrentMenuType() == MenuType.TARGET) {
-            if (config.currentTargetCrosshair == null) return -1;
-            for (int i = 0; i < config.crosshairs.size(); i++) {
-                if (config.crosshairs.get(i).file.replace(".png", "").equals(config.currentTargetCrosshair.getPath())) {
+            if (this.config.currentTargetCrosshair == null) return -1;
+            for (int i = 0; i < this.config.crosshairs.size(); i++) {
+                if (this.config.crosshairs.get(i).file.replace(".png", "").equals(this.config.currentTargetCrosshair.getPath())) {
                     return i;
                 }
             }
@@ -99,16 +100,15 @@ public class SettingScreen extends BaseUIModelScreen<FlowLayout> {
     }
 
     private void swapCrosshair(int from, int to) {
-        ModConfig config = CrosshairCustomizer.CONFIG;
-        if (from < 0 || to < 0 || from >= config.crosshairs.size() || to >= config.crosshairs.size()) return;
-        ModConfig.CrosshairEntry temp = config.crosshairs.get(from);
-        config.crosshairs.set(from, config.crosshairs.get(to));
-        config.crosshairs.set(to, temp);
+        if (from < 0 || to < 0 || from >= this.config.crosshairs.size() || to >= this.config.crosshairs.size()) return;
+        ModConfig.CrosshairEntry temp = this.config.crosshairs.get(from);
+        this.config.crosshairs.set(from, this.config.crosshairs.get(to));
+        this.config.crosshairs.set(to, temp);
 
-        for (int i = 0; i < config.crosshairs.size(); i++) {
-            config.crosshairs.get(i).order = i;
+        for (int i = 0; i < this.config.crosshairs.size(); i++) {
+            this.config.crosshairs.get(i).order = i;
         }
-        ConfigManager.save(config);
+        ConfigManager.save(this.config);
     }
 
     private void addTopUIComponents(FlowLayout rootComponent) {
@@ -159,8 +159,6 @@ public class SettingScreen extends BaseUIModelScreen<FlowLayout> {
     }
 
     private void addUIComponents(FlowLayout rootComponent) {
-        ModConfig config = CrosshairCustomizer.CONFIG;
-        
         rootComponent.childById(FlowLayout.class, "changeMenuButton").mouseDown().subscribe((mouseX, mouseY, button) -> {
             MinecraftClient.getInstance().getSoundManager().play(PositionedSoundInstance.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
             if (CrosshairManager.getCurrentMenuType() == MenuType.MAIN) {
@@ -168,7 +166,7 @@ public class SettingScreen extends BaseUIModelScreen<FlowLayout> {
                 
                 rootComponent.childById(FlowLayout.class, "changeMenuButton").tooltip(Text.of("Change Menu(Current: Target)"));
                 
-                Identifier currentTargetCrosshair = config.currentTargetCrosshair;
+                Identifier currentTargetCrosshair = this.config.currentTargetCrosshair;
                 crosshairItems.forEach((item, name) -> {
                     if (currentTargetCrosshair != null && name.equals(currentTargetCrosshair.getPath())) {
                         item.surface(Surface.flat(CROSSHAIR_CONTAINER_COLOR).and(Surface.outline(0xD0FFFFFF)));
@@ -181,7 +179,7 @@ public class SettingScreen extends BaseUIModelScreen<FlowLayout> {
 
                 rootComponent.childById(FlowLayout.class, "changeMenuButton").tooltip(Text.of("Change Menu(Current: Main)"));
                 
-                Identifier currentCrosshair = config.currentCrosshair;
+                Identifier currentCrosshair = this.config.currentCrosshair;
                 crosshairItems.forEach((item, name) -> {
                     if (currentCrosshair != null && name.equals(currentCrosshair.getPath())) {
                         item.surface(Surface.flat(CROSSHAIR_CONTAINER_COLOR).and(Surface.outline(0xD0FFFFFF)));
@@ -264,8 +262,6 @@ public class SettingScreen extends BaseUIModelScreen<FlowLayout> {
     }
 
     private FlowLayout createCrosshairItem(String crosshairName) {
-        ModConfig config = CrosshairCustomizer.CONFIG;
-
         FlowLayout crosshairContainer = Containers.verticalFlow(Sizing.content(), Sizing.content())
                 .child(new SelectBoxComponent(8))
                 .child(
@@ -282,12 +278,12 @@ public class SettingScreen extends BaseUIModelScreen<FlowLayout> {
                 .tooltip(Text.literal(crosshairName));
         
         if(CrosshairManager.getCurrentMenuType() == MenuType.MAIN) {
-            Identifier currentCrosshair = config.currentCrosshair;
+            Identifier currentCrosshair = this.config.currentCrosshair;
             if (currentCrosshair != null && crosshairName.equals(currentCrosshair.getPath())) {
                 crosshairContainer.surface(Surface.flat(CROSSHAIR_CONTAINER_COLOR).and(Surface.outline(0xD0FFFFFF)));
             }
         } else if (CrosshairManager.getCurrentMenuType() == MenuType.TARGET) {
-            Identifier currentTargetCrosshair = config.currentTargetCrosshair;
+            Identifier currentTargetCrosshair = this.config.currentTargetCrosshair;
             if (currentTargetCrosshair != null && crosshairName.equals(currentTargetCrosshair.getPath())) {
                 crosshairContainer.surface(Surface.flat(CROSSHAIR_CONTAINER_COLOR).and(Surface.outline(0xD0FFFFFF)));
             }
@@ -321,8 +317,6 @@ public class SettingScreen extends BaseUIModelScreen<FlowLayout> {
     }
 
     private void openImportOverlay(FlowLayout rootComponent) {
-        ModConfig config = CrosshairCustomizer.CONFIG;
-
         FlowLayout importContainer = Containers.verticalFlow(Sizing.fixed(200), Sizing.fixed(180));
         importContainer.child(Components.label(Text.literal("Please select the png file to import.")).margins(Insets.of(5)))
                 .surface(Surface.blur(1f, 1f).and(Surface.flat(0xD4101010).and(Surface.outline(0xD0666666))))
@@ -348,7 +342,7 @@ public class SettingScreen extends BaseUIModelScreen<FlowLayout> {
         }
 
         for (File file : Objects.requireNonNull(files)) {
-            if (!file.isFile() || !file.getName().endsWith(".png") || config.crosshairs.stream().anyMatch(entry -> entry.file.equals(file.getName()))) {
+            if (!file.isFile() || !file.getName().endsWith(".png") || this.config.crosshairs.stream().anyMatch(entry -> entry.file.equals(file.getName()))) {
                 continue;
             }
 
@@ -376,7 +370,7 @@ public class SettingScreen extends BaseUIModelScreen<FlowLayout> {
         importContainer.child(
                 Components.button(Text.literal("Import All"), button -> {
                             for (File file : Objects.requireNonNull(files)) {
-                                if (!file.isFile() || !file.getName().endsWith(".png") || config.crosshairs.stream().anyMatch(entry -> entry.file.equals(file.getName()))) {
+                                if (!file.isFile() || !file.getName().endsWith(".png") || this.config.crosshairs.stream().anyMatch(entry -> entry.file.equals(file.getName()))) {
                                     continue;
                                 }
 
